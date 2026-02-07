@@ -3,7 +3,7 @@
 <suite name="API Automation Suite">
     <test name="OpenLibrary Tests">
         <classes>
-            <class name="ge.tbc.testautomation.tests.openlibrary.OpenLibraryTests"/>
+            <class name="ge.tbc.testautomation.tests.jolpi.DriversTests"/>
         </classes>
     </test>
 
