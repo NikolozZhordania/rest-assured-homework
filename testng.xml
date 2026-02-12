@@ -3,6 +3,10 @@
 
 <suite name="AutomationSuite" verbose="1" parallel="false">
 
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
     <!-- Booking API Tests -->
     <test name="Booking Tests">
         <classes>

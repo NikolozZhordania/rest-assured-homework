@@ -1,7 +1,10 @@
 package ge.tbc.testautomation.api.client.bookstore;
 
 import ge.tbc.testautomation.data.constants.bookstore.Constants;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
@@ -12,7 +15,9 @@ public abstract class BaseApi {
         RestAssured.baseURI = Constants.BASE_URL;
         request = RestAssured.given()
                 .contentType(ContentType.JSON)
-                .log().all();
+                .filter(new AllureRestAssured())
+                .filter(new RequestLoggingFilter())
+                .filter(new ResponseLoggingFilter());
     }
 }
 
