@@ -66,7 +66,6 @@ public class SwapiSteps {
 
         topNewest.forEach(p -> System.out.println(p.getName() + " -> " + p.getCreated()));
 
-        // Assertion: descending order
         for (int i = 0; i < topNewest.size() - 1; i++) {
             assertThat(topNewest.get(i).getCreated(), greaterThanOrEqualTo(topNewest.get(i + 1).getCreated()));
         }
@@ -90,7 +89,6 @@ public class SwapiSteps {
 
         System.out.println("Planet with max rotation: " + maxRotation.getName() + " -> " + maxRotation.getRotationPeriod());
 
-        // Assertions
         assertThat(maxRotation.getRotationPeriod(), notNullValue());
         assertThat(Integer.parseInt(maxRotation.getRotationPeriod()), greaterThan(0));
 

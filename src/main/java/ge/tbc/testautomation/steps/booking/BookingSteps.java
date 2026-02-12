@@ -7,6 +7,7 @@ import ge.tbc.testautomation.data.models.response.booking.BookingResponse;
 import ge.tbc.testautomation.data.models.response.booking.AuthResponse;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import lombok.Getter;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -15,6 +16,7 @@ public class BookingSteps {
 
     private final BookingApi api;
     private Response lastResponse;
+    @Getter
     private String token;
 
     public BookingSteps() {
@@ -51,7 +53,6 @@ public class BookingSteps {
 
     @Step("Validate booking fields match request")
     public BookingSteps validateBookingFields(int bookingId, BookingRequest request) {
-        // Fetch the latest booking from API
         BookingResponse response = api.getBooking(bookingId).as(BookingResponse.class);
 
         assertThat(response.getFirstName(), is(request.getFirstName()));
@@ -67,7 +68,4 @@ public class BookingSteps {
         return this;
     }
 
-    public String getToken() {
-        return token;
-    }
 }

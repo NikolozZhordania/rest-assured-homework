@@ -1,1 +1,0 @@
-{"uuid":"be67915f-7707-43dc-adf1-8ef5589666e7","name":"ge.tbc.testautomation.tests.booking.BookingTests","children":["c3e02508-c0d2-4b53-9d6b-8fc63cc59a4e"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1770902684494,"stop":1770902686711}],"afters":[],"start":1770902684455,"stop":1770902688187}

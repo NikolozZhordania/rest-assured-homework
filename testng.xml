@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="AutomationSuite" verbose="1" parallel="false">
+
+    <!-- Booking API Tests -->
+    <test name="Booking Tests">
+        <classes>
+            <class name="ge.tbc.testautomation.tests.booking.BookingTests"/>
+        </classes>
+    </test>
+
+    <!-- Bookstore API Tests -->
+    <test name="Bookstore Tests">
+        <classes>
+            <class name="ge.tbc.testautomation.tests.bookstore.BookStoreTests"/>
+        </classes>
+    </test>
+
+    <!-- SWAPI API Tests -->
+    <test name="Swapi Tests">
+        <classes>
+            <class name="ge.tbc.testautomation.tests.swapi.SwapiTests"/>
+        </classes>
+    </test>
+
+</suite>
