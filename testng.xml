@@ -7,24 +7,17 @@
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
-    <!-- Booking API Tests -->
-    <test name="Booking Tests">
-        <classes>
-            <class name="ge.tbc.testautomation.tests.booking.BookingTests"/>
-        </classes>
-    </test>
-
-    <!-- Bookstore API Tests -->
+    <!-- Petstore API Tests -->
     <test name="Bookstore Tests">
         <classes>
-            <class name="ge.tbc.testautomation.tests.bookstore.BookStoreTests"/>
+            <class name="ge.tbc.testautomation.tests.petstore.PetStoreTests"/>
         </classes>
     </test>
 
-    <!-- SWAPI API Tests -->
+    <!-- Security API Tests -->
     <test name="Swapi Tests">
         <classes>
-            <class name="ge.tbc.testautomation.tests.swapi.SwapiTests"/>
+            <class name="ge.tbc.testautomation.tests.security.SecurityTests"/>
         </classes>
     </test>
 
