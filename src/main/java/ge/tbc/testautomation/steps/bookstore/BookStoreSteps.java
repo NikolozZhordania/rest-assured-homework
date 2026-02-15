@@ -1,45 +1,44 @@
 package ge.tbc.testautomation.steps.bookstore;
 
 import ge.tbc.testautomation.api.client.bookstore.BookStoreApi;
-import ge.tbc.testautomation.data.constants.bookstore.Constants.AuthorNames;
-import ge.tbc.testautomation.data.models.response.bookstore.BooksResponse;
+import ge.tbc.testautomation.data.models.request.bookstore.BookstoreOrderRequest;
+import io.qameta.allure.Step;
+import io.restassured.response.Response;
 
-
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
-
 
 public class BookStoreSteps {
 
-    private final BookStoreApi api = new BookStoreApi();
-    private BooksResponse books;
+    private BookStoreApi api = new BookStoreApi();
+    private Response lastResponse;
 
-    public BookStoreSteps fetchBooks() {
-        this.books = api.getBooks()
+    @Step("Create bookstore order: {request}")
+    public BookStoreSteps createOrder(BookstoreOrderRequest request) {
+        lastResponse = api.createOrder(request)
                 .then()
-                .statusCode(200)
+                .log().all()
                 .extract()
-                .as(BooksResponse.class);
-        System.out.println("Total books: " + books.getBooks().size());
+                .response();
         return this;
     }
 
-    public BookStoreSteps validatePageCount() {
-        books.getBooks().forEach(book -> {
-            assertThat(book.getPages(), lessThan(1000));
-            System.out.println(book.getAuthor() + " - " + book.getTitle());
-        });
+    @Step("Validate last response status code is {statusCode}")
+    public BookStoreSteps validateStatusCode(int statusCode) {
+        lastResponse.then().statusCode(statusCode);
         return this;
     }
 
-    public BookStoreSteps validateLastTwoAuthors() {
-        int totalBooks = books.getBooks().size();
-        var lastBook = books.getBooks().get(totalBooks - 1);
-        var secondLastBook = books.getBooks().get(totalBooks - 2);
-
-        assertThat(secondLastBook.getAuthor(), equalTo(AuthorNames.SECOND_LAST_AUTHOR_NAME));
-        assertThat(lastBook.getAuthor(), equalTo(AuthorNames.LAST_AUTHOR_NAME));
+    @Step("Validate last order response fields match request")
+    public BookStoreSteps validateOrderFields(BookstoreOrderRequest request) {
+        lastResponse.then()
+                .body("id", equalTo(request.getId()))
+                .body("petId", equalTo(request.getPetId()))
+                .body("status", equalTo(request.getStatus()))
+                .body("complete", equalTo(request.isComplete()));
         return this;
+    }
+
+    public Response getResponse() {
+        return lastResponse;
     }
 }

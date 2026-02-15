@@ -1,21 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="API Automation Suite">
-    <test name="OpenLibrary Tests">
+<suite name="AutomationSuite" verbose="1" parallel="false">
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <!-- Booking API Tests -->
+    <test name="Booking Tests">
         <classes>
-            <class name="ge.tbc.testautomation.tests.jolpi.DriversTests"/>
+            <class name="ge.tbc.testautomation.tests.booking.BookingTests"/>
         </classes>
     </test>
 
-    <test name="BookStore Tests">
+    <!-- Bookstore API Tests -->
+    <test name="Bookstore Tests">
         <classes>
             <class name="ge.tbc.testautomation.tests.bookstore.BookStoreTests"/>
         </classes>
     </test>
 
-    <test name="PetStore Tests">
+    <!-- SWAPI API Tests -->
+    <test name="Swapi Tests">
         <classes>
-            <class name="ge.tbc.testautomation.tests.petstore.PetStoreTests"/>
+            <class name="ge.tbc.testautomation.tests.swapi.SwapiTests"/>
         </classes>
     </test>
 
